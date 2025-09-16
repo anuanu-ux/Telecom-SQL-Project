@@ -1,11 +1,10 @@
-Telecom Customer Data Analysis (PostgreSQL Project)
+##Telecom Customer Data Analysis (PostgreSQL Project)
 Project Overview
----
 This project simulates a telecom company's customer, usage, and billing system using PostgreSQL.
 The goal is to analyze customer behavior, usage trends, and revenue insights using SQL queries.
 It demonstrates database design, data generation, and business-driven SQL analysis.
----
-Database Structure
+
+##Database Structure
 1. Customers Table
   •Stores customer details.
 Columns:
@@ -14,7 +13,7 @@ Columns:
    •phone_number
    •plan (Basic, Standard, Premium)
    •join_date
----
+
 2. Customer Usage Table
  •Tracks customer daily usage.
 Columns:
@@ -24,7 +23,7 @@ Columns:
    •call_minutes
    •sms_count
    •data_used_gb
----
+
 3. Billing Table
    •Stores monthly bill details.
 Columns:
@@ -32,33 +31,33 @@ Columns:
    •customer_id (FK → customers)
    •bill_month
    •amount
----
-Dataset Details
+
+##Dataset Details
 
  •1000 customers generated
  •30 days of usage per customer (~30,000 usage records)
  •Billing auto-generated from usage data
----
-Key SQL Queries and Insights
----
-1. Top Customers by Usage
----
+
+##Key SQL Queries and Insights
+
+### Top Customers by Usage
+```
 SELECT c.name, SUM(u.call_minutes) AS total_calls, SUM(u.data_used_gb) AS total_data
 FROM customer_usage u
 JOIN customers c ON u.customer_id = c.customer_id
 GROUP BY c.name
 ORDER BY total_data DESC
 LIMIT 10;
----
-2. Revenue by Plan
----
+```
+### Revenue by Plan
+```
 SELECT c.plan, SUM(b.amount) AS total_revenue
 FROM billing b
 JOIN customers c ON b.customer_id = c.customer_id
 GROUP BY c.plan;
----
-3. Average Usage per Plan
----
+```
+### Average Usage per Plan
+```
 SELECT c.plan,
        AVG(u.call_minutes) AS avg_calls,
        AVG(u.sms_count) AS avg_sms,
@@ -66,30 +65,31 @@ SELECT c.plan,
 FROM customer_usage u
 JOIN customers c ON u.customer_id = c.customer_id
 GROUP BY c.plan;
----
-4. Low-Usage Customers (Churn Risk)
----
+```
+###Low-Usage Customers (Churn Risk)
+```
 SELECT c.name, SUM(u.call_minutes) AS total_calls, SUM(u.data_used_gb) AS total_data
 FROM customer_usage u
 JOIN customers c ON u.customer_id = c.customer_id
 GROUP BY c.name
 HAVING SUM(u.call_minutes) < 100 AND SUM(u.data_used_gb) < 5
 ORDER BY total_data ASC;
----
-5. Average Billing per Plan
+```
+###Average Billing per Plan
+```
 SELECT c.plan, AVG(b.amount) AS avg_bill
 FROM billing b
 JOIN customers c ON b.customer_id = c.customer_id
 GROUP BY c.plan;
----
+```
 
-Business Value:
+##Business Value:
 
  •Customer Retention: Identify low-usage customers to prevent churn.
  •Revenue Growth: Analyze high-value customers for premium plan targeting.
  •Plan Optimization: Compare average usage vs. billing to improve pricing.
----
-Tech Stack:
+
+##Tech Stack:
 Database: PostgreSQL
 • Language: SQL (queries, data generation with pgSQL)
 • Data Volume: 30,000+ rows across 3 tables
