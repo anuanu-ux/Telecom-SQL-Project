@@ -1,5 +1,5 @@
 ## Telecom Customer Data Analysis (PostgreSQL Project)
-Project Overview
+**Project Overview**
 This project simulates a telecom company's customer, usage, and billing system using PostgreSQL.
 The goal is to analyze customer behavior, usage trends, and revenue insights using SQL queries.
 It demonstrates database design, data generation, and business-driven SQL analysis.
