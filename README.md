@@ -5,18 +5,15 @@ The goal is to analyze customer behavior, usage trends, and revenue insights usi
 It demonstrates database design, data generation, and business-driven SQL analysis.
 
 ## Database Structure
-1.Customers Table
-     -Stores customer details.
-Columns:
+1.**Customers Table**-Stores customer details
    -customer_id (Primary Key)
    -name
    -phone_number
    -plan (Basic, Standard, Premium)
    -join_date
 
-2. Customer Usage Table
-     -Tracks customer daily usage.
-Columns:
+2. **Customer Usage Table**-Tracks customer daily usage
+
    -usage_id (Primary Key)
    -customer_id (FK → customers)
    -usage_date
@@ -24,9 +21,8 @@ Columns:
    -sms_count
    -data_used_gb
 
-3. Billing Table
-      -Stores monthly bill details.
-Columns:
+3. **Billing Table** -Stores monthly bill details
+   
    -bill_id (Primary Key)
    -customer_id (FK → customers)
    -bill_month
@@ -93,6 +89,4 @@ GROUP BY c.plan;
 Database: PostgreSQL
 -Language: SQL (queries, data generation with pgSQL)
 -Data Volume: 30,000+ rows across 3 tables
--Database: PostgreSQL
- •Language: SQL (queries, data generation with PL/pgSQL)
- •Data Volume: 30,000+ rows across 3 tables
+
